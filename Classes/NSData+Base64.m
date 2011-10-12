@@ -126,6 +126,7 @@ static char reverseEncodingTable[80] = {    // 0xff => invalid, 0xf0 => '='
     NSData *base64Data = nil;
     const unsigned char *base64Bytes = nil;
     
+
     // ===== This part is derived from http://colloquy.info/project
     // Convert the string to ASCII data.    
     base64Data = [string dataUsingEncoding:NSASCIIStringEncoding];
@@ -147,11 +148,13 @@ static char reverseEncodingTable[80] = {    // 0xff => invalid, 0xf0 => '='
             }
             
             // 4 x 6bit => 3 * 8 bit
+
             temp_buffer [in_buffer_pointer++] = ch;
             
             // we use another buffer because of the whitespaces
             if( in_buffer_pointer == 4 ) {
                 in_buffer_pointer = 0;
+
                 // ===== This part is derived from http://colloquy.info/project
                 result [outpointer++] = ( temp_buffer[0] << 2 ) | ( ( temp_buffer[1] & 0x30) >> 4 );
                 result [outpointer++] = ( ( temp_buffer[1] & 0x0F ) << 4 ) | ( ( temp_buffer[2] & 0x3C ) >> 2 );
